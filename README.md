@@ -1,27 +1,81 @@
-# TextOrVideoSummarizer-G18-PS24
-This repository is dedicated to the project ***Text/Video Summarizer***.
-### Project Overview:
-This tool summarizes the data provided by the user. The data can be in the form of documents or a video file or a blog link or an YouTube URL. The app is capable of running in the background enabling the push notifications whenever a new video is uploaded to the provided youtube channels. 
+# Multi-Format Text Summarizer Application
 
-### Steps to be followed for using the code:
-**Step 1** : Clone the repository in your desired directory. The following command can be used: 
-```
-git clone https://github.com/kmitofficial/TextOrVideoSummarizer-G18-PS24.git
-```
-**Step 2** : Install all the required libraries in the _Webapp_ directory using the command below: 
-```
-pip install -r requirements.txt
-```
-**Step 3** : Create a new file named *.env* in the same directory.  
-**Step 4** : Add your *Gemini API key* in the *.env* as shown below.  
-```
-"API_KEY" = "your_api_key"
-```
-A Gemini API key can be created [here](https://aistudio.google.com/app/apikey).  
-**Step 5** : Finally, run the application using the below command.  
-```
-cd ./WebApp
-streamlit run app.py
-```
-Now, you are ready to use our web application.  
-Upload _documents_ or _youtube links_ or _blog links_, and get your short and crisp summary.
+A web-based text summarization application built with Streamlit that supports text, PDF, YouTube video summarization, and audiobook generation.
+
+## Features
+
+- 📝 **Text Summarization**: Paste any text for instant summarization
+- 📄 **PDF Support**: Upload and summarize PDF documents
+- 🎥 **YouTube Video Summarization**: Extract and summarize video transcripts
+- 🔊 **Audiobook Generation**: Convert summaries to speech (MP3 format)
+- 💾 **History Tracking**: Save and access previous summaries
+- 👤 **User Authentication**: Secure login and registration system
+
+## Prerequisites
+
+- Python 3.8+
+- Docker
+- Internet connection (for YouTube transcript API)
+
+## Setup
+
+1. Clone the repository and navigate to the project directory
+
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Pull the Docker image:
+   ```bash
+   docker pull nithyaetoori/summarizer
+   ```
+
+4. Run the Docker container:
+   ```bash
+   docker run -d -p 5000:5000 nithyaetoori/summarizer
+   ```
+
+5. Start the Streamlit application:
+   ```bash
+   streamlit run app.py
+   ```
+
+## Usage
+
+1. **Register/Login**: Create an account or login to access features
+2. **Choose Input Type**: Select from Text, PDF, or YouTube video
+3. **Provide Content**: 
+   - Paste text directly
+   - Upload a PDF file
+   - Enter a YouTube URL (must have captions)
+4. **Configure Settings**: Choose summary length and method
+5. **Generate**: Click "Summarize" to create your summary
+6. **Audiobook** (Optional): Check the box to generate an audiobook of your summary
+7. **Download**: Save your summary as text or audio files
+
+## Structure
+
+- `app.py` - Main application file
+- `Home.py` - Welcome page and feature overview
+- `Summarizer.py` - Multi-format summarization functionality
+- `History.py` - View and manage past summaries
+- `Settings.py` - User settings and preferences
+- `Login_Register.py` - Authentication system
+- `Database.py` - Database operations for user data and history
+
+## Dependencies
+
+- streamlit
+- streamlit-option-menu
+- requests
+- PyPDF2
+- youtube-transcript-api
+- gTTS
+
+## Notes
+
+- YouTube video summarization requires videos with available captions/subtitles
+- PDF summarization works best with text-based PDFs (not scanned images)
+- Audiobook generation uses Google Text-to-Speech (requires internet connection)
+- The summarization model runs in a Docker container at localhost:5000
